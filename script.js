@@ -1,17 +1,19 @@
 const myLibrary = [];
 const bookBtn = document.getElementById("book-btn")
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read) {
   this.title = title
   this.author = author
   this.pages = pages
+  this.read = read
 }
 
 bookBtn.addEventListener('click', function() {
   const titleInput = prompt("Enter title")
   const authorInput = prompt("Enter Author")
   const pagesInput = prompt("Enter pages")
-  const newBook = new Book(titleInput, authorInput, pagesInput)
+  const readInput = prompt("Have you read it? yes or no")
+  const newBook = new Book(titleInput, authorInput, pagesInput, readInput)
   myLibrary.push(newBook)
   displayLibrary()
 })
@@ -21,8 +23,13 @@ function displayLibrary() {
   booksContainer.innerHTML = ''
 
   myLibrary.forEach(book => {
-booksContainer.innerHTML = 
-`Title: ${book.title}, Author: ${book.author}, Page count: ${book.pages} `
+    const bookCard = document.createElement('div')
+    bookCard.setAttribute('id', 'book-card')
+booksContainer.append(bookCard)
+
+    bookCard.innerHTML = 
+`Title: ${book.title} <br> Author: ${book.author} 
+<br> Page count: ${book.pages} <br> Read: ${book.read}`
   })
 
 }
