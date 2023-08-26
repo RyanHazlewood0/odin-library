@@ -10,3 +10,14 @@ body {
     font-size: 22px;
     margin: 5px
 }
+
+#book-modal {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: solid black 5px;
+    padding: 5px;
+    background-color: beige;
+      }
