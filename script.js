@@ -10,6 +10,7 @@ function Book(title, author, pages, read) {
   this.read = read
 }
 
+
 bookBtn.addEventListener('click', function() {
   bookModal.style.display = 'block'
 })
@@ -43,13 +44,13 @@ function displayLibrary() {
   myLibrary.forEach((book, index) => {
 
     const bookCard = document.createElement('div')
-    bookCard.setAttribute('id', 'book-card')
+    bookCard.setAttribute('class', 'book-card')
 
     bookCard.innerHTML = 
       `Title: ${book.title} <br> Author: ${book.author} 
       <br> Page count: ${book.pages} <br> Read: ${book.read}
       <button class="deleteBtn" data-index="${index}">Delete</button>
-      <button>Read</button>`
+      <button class="readBtn" onclick="toggleRead(${index})">Toggle - Read</button>`
 
 const deleteBtn = bookCard.querySelector('.deleteBtn')
 
@@ -59,11 +60,23 @@ deleteBtn.addEventListener('click', function() {
   displayLibrary();
 })
 
+const readBtn = bookCard.querySelector('.readBtn')
 
-    booksContainer.append(bookCard)
+function toggleRead(index) {
+  if (myLibrary[index].read === 'yes') {
+    myLibrary[index].read = 'no'
+  } else if (myLibrary[index].read === 'no') {
+    myLibrary[index].read = 'yes'
+  }
+
+displayLibrary()
+}
+
+readBtn.addEventListener('click', function() {
+toggleRead(index)
+})
+
+ booksContainer.append(bookCard)
 
     })
   }
-
-
-
